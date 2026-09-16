@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bedrock JSON UI Editor V1</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div>
+    <h1>Bedrock JSON UI Editor</h1>
+    <p>V1 • editor visual para JSON UI</p>
+  </div>
+  <div class="actions">
+    <label class="btn">📂 Abrir JSON<input id="fileInput" type="file" accept=".json,application/json"></label>
+    <button id="loadDemo" class="btn">Demo</button>
+    <button id="exportBtn" class="btn primary">💾 Exportar JSON</button>
+  </div>
+</header>
+
+<main class="app">
+  <aside class="panel tree-panel">
+    <div class="panel-title">ELEMENTOS</div>
+    <input id="search" class="input" placeholder="🔎 Procurar elemento">
+    <div id="tree" class="tree"></div>
+    <div class="hint">Toque em um elemento para editar. Na prévia, arraste o elemento selecionado.</div>
+  </aside>
+
+  <section class="workspace">
+    <div class="toolbar">
+      <button id="zoomOut">−</button><span id="zoomLabel">100%</span><button id="zoomIn">+</button>
+      <button id="resetView">↺</button>
+      <span class="spacer"></span>
+      <label>Resolução
+        <select id="resolution">
+          <option value="1280x720">1280 × 720</option>
+          <option value="1920x1080">1920 × 1080</option>
+          <option value="854x480">854 × 480</option>
+          <option value="720x1280">720 × 1280</option>
+        </select>
+      </label>
+    </div>
+    <div class="stage-wrap">
+      <div id="stage" class="stage">
+        <div class="screen" id="screen">
+          <div class="fake-title">STATUS</div>
+          <div class="fake-info">Seu personagem</div>
+          <div class="ui-button b1">HEALTH <span>20</span></div>
+          <div class="ui-button b2">STR <span>0</span></div>
+          <div class="ui-button b3">SPEED <span>0</span></div>
+          <div class="ui-button b4">MULTI <span>0</span></div>
+          <div class="ui-button b5">REGEN <span>0</span></div>
+          <div class="ui-button b6">TP <span>0</span></div>
+          <div class="close">×</div>
+        </div>
+      </div>
+    </div>
+    <div class="statusbar"><span id="selectionLabel">Nenhum elemento selecionado</span><span>Arraste • Scroll = zoom</span></div>
+  </section>
+
+  <aside class="panel inspector">
+    <div class="panel-title">PROPRIEDADES</div>
+    <div id="emptyInspector" class="empty">Selecione um elemento.</div>
+    <div id="inspector" hidden>
+      <label>Nome<input id="propName" class="input"></label>
+      <div class="grid2">
+        <label>X<input id="propX" class="input" type="number"></label>
+        <label>Y<input id="propY" class="input" type="number"></label>
+      </div>
+      <div class="grid2">
+        <label>Largura<input id="propW" class="input" type="number"></label>
+        <label>Altura<input id="propH" class="input" type="number"></label>
+      </div>
+      <label>Texto<input id="propText" class="input"></label>
+      <label>Tipo
+        <select id="propType" class="input">
+          <option>Label</option><option>Button</option><option>Image</option><option>Panel</option>
+        </select>
+      </label>
+      <div class="quick">
+        <button data-nudge="up">↑ Subir 1</button>
+        <button data-nudge="down">↓ Descer 1</button>
+        <button data-nudge="left">← Esquerda 1</button>
+        <button data-nudge="right">→ Direita 1</button>
+      </div>
+      <button id="deleteBtn" class="danger">Remover elemento</button>
+    </div>
+  </aside>
+</main>
+
+<section class="json-panel">
+  <div class="panel-title">JSON</div>
+  <textarea id="jsonEditor" spellcheck="false"></textarea>
+  <div class="json-actions">
+    <button id="applyJson" class="btn primary">Aplicar JSON</button>
+    <button id="copyJson" class="btn">Copiar</button>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
